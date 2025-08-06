@@ -1,4 +1,4 @@
-# OLX Clone - A Full-Stack Marketplace Application
+
 
 
 This is a full-stack marketplace application built with Next.js, TypeScript, and Tailwind CSS. It allows users to buy and sell products, with features like Google authentication, product creation with image uploads, and a user profile page to manage listings.

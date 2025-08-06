@@ -1,0 +1,31 @@
+// Prisma schema for MongoDB Atlas
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String                @id @default(auto()) @map("_id") @db.ObjectId
+  username  String
+  email     String                @unique
+  createdAt DateTime              @default(now())
+  marketplaceProducts MarketplaceProduct[] @relation("UserProducts")
+}
+
+model MarketplaceProduct {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  price       Float
+  phone       String
+  image       String?
+  createdAt   DateTime @default(now())
+  publicId  String   @unique
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id], name: "UserProducts")
+}
